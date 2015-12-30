@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +33,19 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
 
-
-
-        CheckBox whipped = (CheckBox) findViewById(R.id.Whipped);
-        Boolean whip = whipped.isChecked();
-
+        CheckBox whipped = (CheckBox) findViewById(R.id.Whipped_textbox);
         CheckBox choco = (CheckBox) findViewById(R.id.Chocolate_checkbox);
+
+        Boolean whip = whipped.isChecked();
         Boolean choc = choco.isChecked();
 
+        EditText Ordername = (EditText) findViewById(R.id.name);
+        String name = Ordername.getText().toString();
 
 
 
-        displayMessage(createOrderSummary(calculatePrice(),whip,choc));
+
+        displayMessage(createOrderSummary(calculatePrice(),whip,choc,name));
 
 
 
@@ -58,11 +61,12 @@ public class MainActivity extends AppCompatActivity {
     public void incrementQuantity(View view) {
 
         displayMessage("$0.00");
-
-
         displayPrice(0);
-        quantity = quantity + 1;
-        displayQuantity(quantity);
+
+        if (quantity < 100) {
+            quantity = quantity + 1;
+            displayQuantity(quantity);
+        }
     }
 
 
@@ -109,9 +113,20 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     private int calculatePrice() {
-        int price = quantity * 5;
 
-        return price;
+        CheckBox whipped = (CheckBox) findViewById(R.id.Whipped_textbox);
+        CheckBox choco = (CheckBox) findViewById(R.id.Chocolate_checkbox);
+
+        int totalPrice = 5;
+        if (whipped.isChecked()){
+            totalPrice += 1;
+        }
+        if (choco.isChecked()){
+            totalPrice += 2;
+        }
+        totalPrice *= quantity;
+
+        return totalPrice;
     }
 
 
@@ -124,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
      * @param price of the order
      * @return text summary
      */
-    private String createOrderSummary(int price,Boolean hasWhippedCream, Boolean hasChocolate) {
+    private String createOrderSummary(int price,Boolean hasWhippedCream, Boolean hasChocolate, String name) {
 
 
         String priceMessage = "";
 
-        priceMessage += "Name: Mark V.";
+        priceMessage += "Name:" + name;
 
         if (hasWhippedCream) {
             priceMessage += "\nAdded whipped cream";

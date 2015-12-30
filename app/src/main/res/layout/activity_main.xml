@@ -31,6 +31,18 @@
 
             />
 
+        <CheckBox
+            android:id="@+id/Chocolate_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chocolate"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="24dp"
+
+            />
+
 
 
         <TextView

@@ -35,12 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
         CheckBox whipped = (CheckBox) findViewById(R.id.Whipped);
         Boolean whip = whipped.isChecked();
- //       Log.i("MainActivity",whip.toString());
+
+        CheckBox choco = (CheckBox) findViewById(R.id.Chocolate_checkbox);
+        Boolean choc = choco.isChecked();
 
 
 
 
-        displayMessage(createOrderSummary(calculatePrice(),whip));
+        displayMessage(createOrderSummary(calculatePrice(),whip,choc));
 
 
 
@@ -113,21 +115,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private String createOrderSummary(int price,Boolean hasWhippedCream){
 
-        String Whipped = "";
-        if (hasWhippedCream){
-            Whipped = "\nAdded whipped cream";
+    /**
+     * Create summary of the order.
+     *
+     * @param hasWhippedCream is whether or not the user wants whipped cream topping
+     * @param hasChocolate is whether or not the user wants whipped chocolate topping
+     * @param price of the order
+     * @return text summary
+     */
+    private String createOrderSummary(int price,Boolean hasWhippedCream, Boolean hasChocolate) {
+
+
+        String priceMessage = "";
+
+        priceMessage += "Name: Mark V.";
+
+        if (hasWhippedCream) {
+            priceMessage += "\nAdded whipped cream";
         }
 
+        if (hasChocolate) {
+            priceMessage += "\nAdded chocolate";
+        }
+
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nTotal : " + price;
+        priceMessage += "\nThank you Broh!!";
 
 
-        return "Name: Mark V."+
-                Whipped +
-                "\nQuantity: " +
-                quantity +
-                "\nTotal :"
-                + price +
-                "\nThank you broh!";
+        return priceMessage;
     }
 }

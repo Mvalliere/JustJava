@@ -2,7 +2,10 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -11,7 +14,7 @@ import java.text.NumberFormat;
 /**
  * This app displays an order form to order coffee.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
 
@@ -28,15 +31,21 @@ public class MainActivity extends ActionBarActivity {
      */
     public void submitOrder(View view) {
 
-        int price = calculatePrice();
 
-//        String priceMessage = price + " dollars for " + quantity + " cups of coffee. Pay up.";
-//        priceMessage = priceMessage + "\nThanks broh!";
 
-        displayMessage(createOrderSummary(price));
+        CheckBox whipped = (CheckBox) findViewById(R.id.Whipped);
+        Boolean whip = whipped.isChecked();
+ //       Log.i("MainActivity",whip.toString());
+
+
+
+
+        displayMessage(createOrderSummary(calculatePrice(),whip));
+
+
+
 
         quantity = 0;
-
         displayQuantity(0);
 
 
@@ -53,6 +62,7 @@ public class MainActivity extends ActionBarActivity {
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
+
 
 
     public void decrementQuantity(View view) {
@@ -103,10 +113,21 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private String createOrderSummary(int price){
+    private String createOrderSummary(int price,Boolean hasWhippedCream){
+
+        String Whipped = "";
+        if (hasWhippedCream){
+            Whipped = "\nAdded whipped cream";
+        }
 
 
 
-        return "Name: Mark V.\nQuantity: " + quantity + "\nTotal :" + price + "\nThank you broh!";
+        return "Name: Mark V."+
+                Whipped +
+                "\nQuantity: " +
+                quantity +
+                "\nTotal :"
+                + price +
+                "\nThank you broh!";
     }
 }

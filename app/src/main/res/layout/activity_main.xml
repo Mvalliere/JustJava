@@ -1,88 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.android.justjava.MainActivity">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quantity"
-        android:textSize="16dp"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        android:textAllCaps="true"/>
-
-    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.android.justjava.MainActivity">
 
-        <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:text="-"
-            android:onClick="decrementQuantity"
-            android:layout_marginLeft="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOPPINGS"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            />
 
+        <CheckBox
+            android:id="@+id/Whipped"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whipped Cream"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="24dp"
+
+            />
 
 
 
         <TextView
-            android:id="@+id/quantity_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-             />
+            android:text="Quantity"
+            android:textSize="16dp"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:textAllCaps="true"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="-"
+                android:onClick="decrementQuantity"
+                android:layout_marginLeft="16dp"/>
 
 
+
+
+            <TextView
+                android:id="@+id/quantity_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                 />
+
+
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="+"
+                android:onClick="incrementQuantity"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/black"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDER SUMMARY"
+            android:textSize="16dp"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/order_summary_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.00"
+            android:textSize="16dp"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"/>
 
         <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:text="+"
-            android:onClick="incrementQuantity"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDER"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:onClick="submitOrder"/>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/black"/>
-
-    <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ORDER SUMMARY"
-        android:textSize="16dp"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"/>
-
-    <TextView
-        android:id="@+id/order_summary_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$0.00"
-        android:textSize="16dp"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        android:textColor="@android:color/black"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ORDER"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:onClick="submitOrder"/>
-
-</LinearLayout>
+</ScrollView>

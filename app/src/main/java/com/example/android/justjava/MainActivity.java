@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        displayMessage(createOrderSummary(calculatePrice(),whip,choc,name));
+        createOrderSummary(calculatePrice(),whip,choc,name);
 
 
 
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
      * @param price of the order
      * @return text summary
      */
-    private String createOrderSummary(int price,Boolean hasWhippedCream, Boolean hasChocolate, String name) {
+    private void createOrderSummary(int price,Boolean hasWhippedCream, Boolean hasChocolate, String name) {
 
 
         String priceMessage = "";
@@ -155,10 +157,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal : " + price;
+        priceMessage += "\nTotal : $" + price;
         priceMessage += "\nThank you Broh!!";
 
 
-        return priceMessage;
+        composeEmail(name,priceMessage);
+
+
+
+    }
+
+    private void composeEmail(String customer, String message){
+        String[] test = {"test1@gmail.com"};
+        String subject = "Just Java Order for " + customer;
+        String text = message;
+
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto",test[0], null));
+     //   intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+     //   test[0] = null;
+
+
+       // intent.putExtra(Intent.EXTRA_EMAIL, test);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+
+        if (intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
+
+
     }
 }

@@ -110,24 +110,6 @@
             android:layout_marginTop="16dp"
             android:background="@android:color/black"/>
 
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ORDER SUMMARY"
-            android:textSize="16dp"
-            android:paddingTop="16dp"
-            android:paddingLeft="16dp"/>
-
-        <TextView
-            android:id="@+id/order_summary_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$0.00"
-            android:textSize="16dp"
-            android:paddingTop="16dp"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -135,7 +117,8 @@
             android:text="ORDER"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
-            android:onClick="submitOrder"/>
+            android:onClick="submitOrder"
+            />
 
     </LinearLayout>
 </ScrollView>
